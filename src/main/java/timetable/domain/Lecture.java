@@ -1,6 +1,8 @@
 package timetable.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Lecture {
     private final String lectureName;
@@ -15,7 +17,7 @@ public class Lecture {
         this.lectureTimes = lectureTimes;
     }
 
-    public boolean overlapsWith(Lecture otherLecture) {
+    public boolean overlapsTimeWith(Lecture otherLecture) {
         // 동일 교과목은 수강할 수 없음
         if (this.lectureName.equals(otherLecture.lectureName)
                 || this.lectureCode.equals(otherLecture.lectureCode)) {
@@ -31,6 +33,10 @@ public class Lecture {
         return false;
     }
 
+    public boolean overlapsNameWith(Lecture otherLecture) {
+        return this.lectureName.equals(otherLecture.lectureName);
+    }
+
     public boolean hasConflictWith(TimeSlot thisTimeSlot, List<TimeSlot> otherLectureTimes) {
         for (TimeSlot otherTimeSlot : otherLectureTimes) {
             if (thisTimeSlot.overlapsWith(otherTimeSlot)) {
@@ -39,5 +45,14 @@ public class Lecture {
         }
 
         return false;
+    }
+
+    public void divide(Map<String, List<Lecture>> map) {
+        if (!map.containsKey(lectureName)) {
+            map.put(lectureName, new ArrayList<>(List.of(this)));
+            return;
+        }
+
+        map.get(lectureName).add(this);
     }
 }
