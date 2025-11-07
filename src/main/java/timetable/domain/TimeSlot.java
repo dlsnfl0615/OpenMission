@@ -13,7 +13,7 @@ public class TimeSlot {
         this.end = end;
     }
 
-    public boolean doesOverlap(TimeSlot timeSlot) {
+    public boolean overlapsWith(TimeSlot timeSlot) {
         if (this.day != timeSlot.day) {
             return false;
         }
