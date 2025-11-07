@@ -16,7 +16,7 @@ class LectureTest {
         List<TimeSlot> lectureTimes1 = List.of(new TimeSlot(Day.MON, LocalTime.of(10, 30), LocalTime.of(11, 0)));
         Lecture lecture1 = new Lecture("C++", "최진우", "CSC-0987", lectureTimes1);
 
-        assertThat(addedLecture.overlapsWith(lecture1)).isFalse();
+        assertThat(addedLecture.overlapsTimeWith(lecture1)).isFalse();
     }
 
     @Test
@@ -33,9 +33,9 @@ class LectureTest {
         List<TimeSlot> lectureTimes4 = List.of(new TimeSlot(Day.MON, LocalTime.of(8, 30), LocalTime.of(10, 0)));
         Lecture lecture4 = new Lecture("c++", "최진우", "CSC-1000", lectureTimes4);
 
-        assertThat(addedLecture.overlapsWith(lecture1)).isTrue();
-        assertThat(addedLecture.overlapsWith(lecture2)).isTrue();
-        assertThat(addedLecture.overlapsWith(lecture3)).isTrue();
-        assertThat(addedLecture.overlapsWith(lecture4)).isTrue();
+        assertThat(addedLecture.overlapsTimeWith(lecture1)).isTrue();
+        assertThat(addedLecture.overlapsTimeWith(lecture2)).isTrue();
+        assertThat(addedLecture.overlapsTimeWith(lecture3)).isTrue();
+        assertThat(addedLecture.overlapsTimeWith(lecture4)).isTrue();
     }
 }
