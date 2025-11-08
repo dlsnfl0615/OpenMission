@@ -8,4 +8,8 @@ public class TimeTable {
     public TimeTable(List<Lecture> registeredLectures) {
         lectures = registeredLectures;
     }
+
+    public List<Lecture> getLectures() {
+        return List.copyOf(lectures);
+    }
 }
