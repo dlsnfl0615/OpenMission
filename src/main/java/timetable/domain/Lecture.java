@@ -34,7 +34,11 @@ public class Lecture {
     }
 
     public boolean overlapsNameWith(Lecture otherLecture) {
-        return this.lectureName.equals(otherLecture.lectureName);
+        return this.isSameNameAs(otherLecture.lectureName);
+    }
+
+    public boolean isSameNameAs(String otherLectureCode) {
+        return this.lectureCode.equals(otherLectureCode);
     }
 
     public boolean hasConflictWith(TimeSlot thisTimeSlot, List<TimeSlot> otherLectureTimes) {
@@ -54,5 +58,21 @@ public class Lecture {
         }
 
         map.get(lectureName).add(this);
+    }
+
+    public String getLectureName() {
+        return lectureName;
+    }
+
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public String getLectureCode() {
+        return lectureCode;
+    }
+
+    public List<TimeSlot> getLectureTimes() {
+        return List.copyOf(lectureTimes);
     }
 }
