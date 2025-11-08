@@ -21,4 +21,16 @@ public class TimeSlot {
         return (timeSlot.start.isAfter(this.start) && timeSlot.start.isBefore(this.end))
                 || (timeSlot.end.isAfter(this.start) && timeSlot.end.isBefore(this.end));
     }
+
+    public Day getDay() {
+        return day;
+    }
+
+    public LocalTime getStart() {
+        return start;
+    }
+
+    public LocalTime getEnd() {
+        return end;
+    }
 }
