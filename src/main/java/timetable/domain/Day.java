@@ -1,5 +1,5 @@
 package timetable.domain;
 
 public enum Day {
-    MON, TUE, WED, TUR, FRI
+    MON, TUE, WED, THU, FRI
 }
