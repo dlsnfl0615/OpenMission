@@ -17,13 +17,15 @@ public class Lecture {
         this.lectureTimes = lectureTimes;
     }
 
-    public boolean overlapsTimeWith(Lecture otherLecture) {
-        // 동일 교과목은 수강할 수 없음
-        if (this.lectureName.equals(otherLecture.lectureName)
-                || this.lectureCode.equals(otherLecture.lectureCode)) {
-            return true;
-        }
+    public boolean overlapsNameWith(Lecture otherLecture) {
+        return this.isSameNameAs(otherLecture.lectureName);
+    }
 
+    public boolean isSameNameAs(String otherLectureCode) {
+        return this.lectureCode.equals(otherLectureCode);
+    }
+
+    public boolean overlapsTimeWith(Lecture otherLecture) {
         for (TimeSlot timeSlot : this.lectureTimes) {
             if (hasConflictWith(timeSlot, otherLecture.lectureTimes)) {
                 return true;
@@ -31,14 +33,6 @@ public class Lecture {
         }
 
         return false;
-    }
-
-    public boolean overlapsNameWith(Lecture otherLecture) {
-        return this.isSameNameAs(otherLecture.lectureName);
-    }
-
-    public boolean isSameNameAs(String otherLectureCode) {
-        return this.lectureCode.equals(otherLectureCode);
     }
 
     public boolean hasConflictWith(TimeSlot thisTimeSlot, List<TimeSlot> otherLectureTimes) {
@@ -58,6 +52,20 @@ public class Lecture {
         }
 
         map.get(lectureName).add(this);
+    }
+
+    public boolean conflictsWithNoLectureDays(List<Day> noLectureDays) {
+        boolean conflict = false;
+
+        for (TimeSlot lectureTime : lectureTimes) {
+            conflict = lectureTime.isSameDayWith(noLectureDays);
+
+            if (conflict) { // 해당 강의가 공강날이랑 겹치면
+                break;
+            }
+        }
+
+        return conflict;
     }
 
     public String getLectureName() {
