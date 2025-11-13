@@ -9,6 +9,10 @@ public class TimeTable {
         lectures = registeredLectures;
     }
 
+    public boolean isEmpty() {
+        return lectures.isEmpty();
+    }
+
     public List<Lecture> getLectures() {
         return List.copyOf(lectures);
     }
